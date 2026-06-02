@@ -194,37 +194,29 @@ function renderQuestion() {
     const content = opt.substring(2).trim();
     
     const label = document.createElement('button');
-    label.className = `w-full text-left p-4 rounded-2xl border-2 font-medium text-slate-700 transition-all duration-200 flex items-start gap-3 active:scale-[0.99] `;
+    label.className = 'option-btn';
     
     // Determine style based on selection and correct answer
     if (currentMode === 'mock_test') {
-      // Mock test styling (just show selection, don't show correctness immediately)
       if (selected === letter) {
-        label.className += ' border-indigo-600 bg-indigo-50/50 text-indigo-900 font-bold';
-      } else {
-        label.className += ' border-slate-200 hover:border-slate-300 hover:bg-slate-50/50';
+        label.className += ' selected';
       }
     } else {
-      // Practice / Random modes styling (reveal correctness on click)
       if (selected) {
-        // user already selected
         const correctLetter = q.correct;
         if (letter === correctLetter) {
-          label.className += ' border-emerald-500 bg-emerald-50 text-emerald-950 font-bold';
+          label.className += ' correct';
         } else if (selected === letter) {
-          label.className += ' border-rose-400 bg-rose-50 text-rose-950 font-bold';
+          label.className += ' wrong';
         } else {
-          label.className += ' border-slate-100 opacity-60 pointer-events-none';
+          label.className += ' dimmed';
         }
-      } else {
-        // not selected yet
-        label.className += ' border-slate-200 hover:border-slate-300 hover:bg-slate-50/50';
       }
     }
     
     label.innerHTML = `
-      <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-slate-100 text-slate-600 text-xs font-bold shrink-0">${letter}</span>
-      <span class="text-sm md:text-md pt-0.5 leading-snug">${content}</span>
+      <span class="option-circle">${letter}</span>
+      <span style="padding-top: 2px;">${content}</span>
     `;
     
     if (!selected || currentMode === 'mock_test') {
