@@ -62,8 +62,7 @@ function updateProgressStats() {
 
   // Update UI Elements
   document.getElementById('progressBar').style.width = `${percent}%`;
-  document.getElementById('progressPercent').innerText = `${percent}% hoàn thành`;
-  document.getElementById('progressCount').innerText = `${done}/${total} câu`;
+  document.getElementById('progressPercentCount').innerText = `${percent}% hoàn thành (${done}/${total} câu)`;
   
   document.getElementById('statsCorrect').innerText = correct;
   document.getElementById('statsDone').innerText = done;
